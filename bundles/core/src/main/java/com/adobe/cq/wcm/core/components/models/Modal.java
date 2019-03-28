@@ -20,12 +20,6 @@ import org.osgi.annotation.versioning.ConsumerType;
 
 import com.adobe.cq.export.json.ComponentExporter;
 
-/**
- * Defines the {@code List} Sling Model used for the {@code /apps/core/wcm/components/modal} component. This component
- * currently only supports page lists.
- *
- * @since com.adobe.cq.wcm.core.components.models 11.0.0
- */
 @ConsumerType
 public interface Modal extends ComponentExporter {
 	
