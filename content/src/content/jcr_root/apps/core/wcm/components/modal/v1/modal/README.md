@@ -64,7 +64,7 @@ last modification date of the item; possible values: `title`, `modified`
 15. `./showModificationDate` - if set to `true` each item's last modification date will be rendered
 
 ## Client Libraries
-The component provides a `core.wcm.components.list.v1` client library category that contains a recommended base
+The component provides a `core.wcm.components.modal.v1` client library category that contains a recommended base
 CSS styling. It should be added to a relevant site client library using the `embed` property.
 
 It also provides a `core.wcm.components.modal.v1.editor` editor client library category that includes
