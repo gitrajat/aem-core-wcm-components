@@ -37,12 +37,16 @@ import com.adobe.cq.wcm.core.components.models.Modal;
 public class ModalImpl implements Modal {
 
 	protected static final String RESOURCE_TYPE = "core/wcm/components/modal/v1/modal";
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(ModalImpl.class);
-	
-	private String modalId;
+
+	private static final String JCR_CONTENT = "/jcr:content";
+	private static final String KEY_MODAL_ID = "modalId";
 
 	@SlingObject
 	private Resource resource;
+
+	private String modalId;
 
 	@Override
 	public String getExportedType() {
@@ -50,26 +54,33 @@ public class ModalImpl implements Modal {
 	}
 
 	@PostConstruct
-	void init() {
-		String componentPath = resource.getPath();
-		int startPoint = componentPath.indexOf("/jcr:content");
-		String relativePath = componentPath.substring(startPoint);
-		modalId = String.valueOf(Math.abs(relativePath.hashCode() - 1));
-		ModifiableValueMap map = resource.adaptTo(ModifiableValueMap.class);
-		if(map != null) {
-			map.put("modalId", modalId);
+	private void initModel() {
+		if (modalId == null) {
+			generateModalId();
 		}
-		
+	}
+
+	void generateModalId() {
+		String absoluteComponentPath = resource.getPath();
+		int index = absoluteComponentPath.indexOf(JCR_CONTENT);
+		String relativeComponentPath = absoluteComponentPath.substring(index);
+		modalId = String.valueOf(Math.abs(relativeComponentPath.hashCode() - 1));
+
+		ModifiableValueMap map = resource.adaptTo(ModifiableValueMap.class);
+		if (map != null) {
+			map.put(KEY_MODAL_ID, modalId);
+		}
+
 		try {
 			resource.getResourceResolver().commit();
 		} catch (PersistenceException e) {
-			LOGGER.error("Error occured while saving the modalId for {}", componentPath, e);
+			LOGGER.error("Error occured while saving the modalId for {}: {}", absoluteComponentPath, e);
 		}
 	}
 
 	@Override
 	public String getModalId() {
 		return modalId;
-	}	
+	}
 
 }
