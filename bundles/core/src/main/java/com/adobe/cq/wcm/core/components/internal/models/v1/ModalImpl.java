@@ -1,5 +1,5 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- ~ Copyright 2017 Adobe Systems Incorporated
+ ~ Copyright 2019 Adobe Systems Incorporated
  ~
  ~ Licensed under the Apache License, Version 2.0 (the "License");
  ~ you may not use this file except in compliance with the License.
@@ -21,9 +21,12 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,9 +39,8 @@ import com.adobe.cq.wcm.core.components.models.Modal;
 @Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
 public class ModalImpl implements Modal {
 
-	protected static final String RESOURCE_TYPE = "core/wcm/components/modal/v1/modal";
-
 	private static final Logger LOGGER = LoggerFactory.getLogger(ModalImpl.class);
+	protected static final String RESOURCE_TYPE = "core/wcm/components/modal/v1/modal";
 
 	private static final String JCR_CONTENT = "/jcr:content";
 	private static final String KEY_MODAL_ID = "modalId";
@@ -46,21 +48,22 @@ public class ModalImpl implements Modal {
 	@SlingObject
 	private Resource resource;
 
+	@SlingObject
+	private ResourceResolver resourceResolver;
+
 	private String modalId;
 
-	@Override
-	public String getExportedType() {
-		return resource.getResourceType();
-	}
+	@ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+	private String pagePath;
 
 	@PostConstruct
 	private void initModel() {
 		if (modalId == null) {
-			generateModalId();
+			populateModalProperties();
 		}
 	}
 
-	void generateModalId() {
+	void populateModalProperties() {
 		String absoluteComponentPath = resource.getPath();
 		int index = absoluteComponentPath.indexOf(JCR_CONTENT);
 		String relativeComponentPath = absoluteComponentPath.substring(index);
@@ -72,15 +75,25 @@ public class ModalImpl implements Modal {
 		}
 
 		try {
-			resource.getResourceResolver().commit();
+			resourceResolver.commit();
 		} catch (PersistenceException e) {
-			LOGGER.error("Error occured while saving the modalId for {}: {}", absoluteComponentPath, e);
+			LOGGER.error("Error occured while saving the modalId for {}", absoluteComponentPath, e);
 		}
+	}
+
+	@Override
+	public String getExportedType() {
+		return resource.getResourceType();
 	}
 
 	@Override
 	public String getModalId() {
 		return modalId;
+	}
+
+	@Override
+	public String getPagePath() {
+		return pagePath;
 	}
 
 }

@@ -19,36 +19,36 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
-                            <userSpecifiedId
+                            <modal-checkbox
                                jcr:primaryType="nt:unstructured"
                                sling:resourceType="granite/ui/components/foundation/form/checkbox"
-                               fieldLabel="Do you want to provide particular modal Id"
+                               fieldLabel="Do you want to show modal Id"
                                id="enable"
                                class="cq-dialog-checkbox-showhide"
                                cq-dialog-checkbox-showhide-target=".button-option-enable-showhide-target"
                                text="Show Modal Id"
                                value="true"
-                               name="modal"/>
-                            <showHideContainer
+                               name="./modal"/>
+                            <modal-field
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/foundation/container"
                                 class="button-option-enable-showhide-target"
                                 showhidetargetvalue="true">
                                 <items jcr:primaryType="nt:unstructured">
-                                       <provideactnum
+                                       <modal-id
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                             fieldLabel="Modal Id"
                                             disabled="{Boolean}true"
-                                            name="modalId"/>
+                                            name="./modalId"/>
                                 </items>
-                            </showHideContainer> 
-                            <xfpath
+                            </modal-field> 
+                            <page-path
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                 fieldDescription="Path for XF"
                                 fieldLabel="XF Path"
-                                name="./xfpath"
+                                name="./pagePath"
                                 rootPath="/content"/>
                         </items>
                     </properties>

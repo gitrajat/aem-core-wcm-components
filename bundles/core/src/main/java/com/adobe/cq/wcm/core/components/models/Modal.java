@@ -1,5 +1,5 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- ~ Copyright 2017 Adobe Systems Incorporated
+ ~ Copyright 2019 Adobe Systems Incorporated
  ~
  ~ Licensed under the Apache License, Version 2.0 (the "License");
  ~ you may not use this file except in compliance with the License.
@@ -21,19 +21,39 @@ import org.osgi.annotation.versioning.ConsumerType;
 import com.adobe.cq.export.json.ComponentExporter;
 
 /**
- * Defines the {@code List} Sling Model used for the {@code /apps/core/wcm/components/modal} component. This component
- * currently supports using "#" in the url
+ * Defines the {@code Modal} Sling Model used for the {@code /apps/core/wcm/components/modal} component. This component
+ * currently supports using "#{modalId}" in the url
  *
- * @since com.adobe.cq.wcm.core.components.models 11.0.0
+ * @since com.adobe.cq.wcm.core.components.models 12.8.0
  */
 @ConsumerType
 public interface Modal extends ComponentExporter {
 	
+	/**
+	 * Returns the hash generated for the component path
+	 * 
+	 * @return modelId
+	 *  @since com.adobe.cq.wcm.core.components.models 12.8.0
+	 */
 	default String getModalId() {
 		throw new UnsupportedOperationException();
 	}
 	
-	@NotNull
+	/**
+	 * Returns the page path value
+	 * 
+	 * @return pagePath
+	 *  @since com.adobe.cq.wcm.core.components.models 12.8.0
+	 */
+	default String getPagePath() {
+		throw new UnsupportedOperationException();
+	}
+	
+	/**
+     * @see ComponentExporter#getExportedType()
+     * @since com.adobe.cq.wcm.core.components.models 12.2.0
+     */
+    @NotNull
     @Override
     default String getExportedType() {
         throw new UnsupportedOperationException();
