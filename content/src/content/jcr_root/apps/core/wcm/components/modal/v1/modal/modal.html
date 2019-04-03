@@ -15,14 +15,14 @@
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
 <div data-sly-use.modal="com.adobe.cq.wcm.core.components.models.Modal"
      data-sly-use.template="core/wcm/components/commons/v1/templates.html">
-    <h3>${modal.modalId}</h3>
-    <h3>${modal.pagePath}</h3>
-    <div class="cmp_modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-content-url="/content/dam/testpage.cfm.content.html">
+    <div data-sly-test="${wcmmode.edit}">
+        <h3>${modal.modalId}</h3>
+    </div>
+    <div class="cmp_modal" id="${modal.modalId}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-content-url="${modal.pagePath}">
         <div class="cmp-modal-dialog">
             <div class="cmp-modal-content">
                 <div class="cmp-modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="myModalClass">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                 </div>
                 <div class="cmp-modal-body">
                 </div>
