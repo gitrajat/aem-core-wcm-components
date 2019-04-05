@@ -30,6 +30,7 @@
                                 fieldDescription="Path of the page"
                                 fieldLabel="Page Path"
                                 name="./pagePath"
+                                required="{Boolean}true"
                                 rootPath="/content"/>
                             <default-modal-show
                                 jcr:primaryType="nt:unstructured"
