@@ -16,10 +16,9 @@
 <div data-sly-use.modal="com.adobe.cq.wcm.core.components.models.Modal"
      data-sly-use.template="core/wcm/components/commons/v1/templates.html">
     <div data-sly-test="${wcmmode.edit}">
-        <h3>MODAL COMPONENT</h3>
         <h4>Id: ${modal.modalId}</h4>
     </div>
-    <div class="cmp_modal" id="${modal.modalId}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-content-url="${modal.pagePath}">
+    <div class="cmp_modal" id="${modal.modalId}" data-default-show-modal="true" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-content-url="${modal.pagePath}">
         <div class="cmp-modal-dialog">
             <div class="cmp-modal-content">
                 <div class="cmp-modal-header">

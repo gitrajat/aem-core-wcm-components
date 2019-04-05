@@ -44,6 +44,8 @@ public class ModalImpl implements Modal {
 
 	private static final String JCR_CONTENT = "/jcr:content";
 	private static final String KEY_MODAL_ID = "modalId";
+	private static final String XF_PATH_CHECK = "/content/experience-fragments";
+	private static final String HTML_EXT = ".html";
 
 	@SlingObject
 	private Resource resource;
@@ -54,7 +56,10 @@ public class ModalImpl implements Modal {
 	private String modalId;
 
 	@ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-	private String pagePath;
+	private StringBuilder pagePath;
+	
+	@ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+	private boolean showModalByDefault;
 
 	@PostConstruct
 	private void initModel() {
@@ -68,6 +73,10 @@ public class ModalImpl implements Modal {
 		int index = absoluteComponentPath.indexOf(JCR_CONTENT);
 		String relativeComponentPath = absoluteComponentPath.substring(index);
 		modalId = String.valueOf(Math.abs(relativeComponentPath.hashCode() - 1));
+		
+		if(pagePath.toString().startsWith(XF_PATH_CHECK) && !pagePath.toString().contains(HTML_EXT)) {
+			pagePath = pagePath.append(HTML_EXT);
+		}
 
 		ModifiableValueMap map = resource.adaptTo(ModifiableValueMap.class);
 		if (map != null) {
@@ -92,8 +101,13 @@ public class ModalImpl implements Modal {
 	}
 
 	@Override
-	public String getPagePath() {
+	public StringBuilder getPagePath() {
 		return pagePath;
+	}
+	
+	@Override
+	public boolean getShowModalByDefault() {
+		return showModalByDefault;
 	}
 
 }

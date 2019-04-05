@@ -13,45 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
+/* Getting Page URL  Modal ID */
 
-"use strict";
-// Get the modal
-var getModalWindowID = window.location.hash;
-getModalWindowID = getModalWindowID.split("?");
-var getModalWindowName = getModalWindowID[0];
+var getUrlModalID = window.location.hash.substr(1).split("?")[0];
+var getValOnPage = document.createElement("div");
+getValOnPage.setAttribute("id", "data-modal-content");
+document.body.appendChild(getValOnPage);
+var modalContentUrl = document.getElementById(getUrlModalID).getAttribute("data-content-url");
 
-$(".myModalClass").on("click", function() {
-    $(getModalWindowName).css({
-        "display": "none"
-    });
-});
+function fetchData(url, insertModalContent) {
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            insertModalContent(this.responseText);
+        }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if ("#" + event.target.id === getModalWindowName) {
-        $(getModalWindowName).css({
-            "display": "none"
-        });
-    }
-};
+function initializeModal(xhttp) {
+    document.getElementById("data-modal-content").innerHTML = xhttp;
+    var modalOpen = new tingle.modal({});
+    modalOpen.open();
+    modalOpen.setContent(document.getElementById("data-modal-content").innerHTML);
+}
 
-// Escape button event
-$(document).keyup(function(event) {
-    if (event.keyCode === 27) {
-        // Close the modal/menu
-        $(getModalWindowName).css({
-            "display": "none"
-        });
-    }
-});
-
-$(document).ready(function() {
-    if ($(getModalWindowName).length) {
-        var getPath = $(getModalWindowName).data("contentUrl");
-        $(getModalWindowName).find(".cmp-modal-dialog .cmp-modal-content .cmp-modal-body").load(getPath, function() {
-            $(getModalWindowName).css({
-                "display": "block"
-            });
-        });
-    }
-});
+document.addEventListener('DOMContentLoaded', function (event) {
+    document.getElementById("data-modal-content").style.display = "none";
+    fetchData(modalContentUrl, initializeModal);
+})

@@ -45,7 +45,17 @@ public interface Modal extends ComponentExporter {
 	 * @return pagePath
 	 *  @since com.adobe.cq.wcm.core.components.models 12.8.0
 	 */
-	default String getPagePath() {
+	default StringBuilder getPagePath() {
+		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Returns the boolean value defining whether to show modal by default on page load or not
+	 * 
+	 * @return defaultModalShow
+	 *  @since com.adobe.cq.wcm.core.components.models 12.8.0
+	 */
+	default boolean getShowModalByDefault() {
 		throw new UnsupportedOperationException();
 	}
 	
