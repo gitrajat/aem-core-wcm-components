@@ -56,8 +56,8 @@ public class ModalImpl implements Modal {
 	private String modalId;
 
 	@ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-	private StringBuilder pagePath;
-	
+	private String pagePath;
+
 	@ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
 	private boolean showModalByDefault;
 
@@ -73,9 +73,9 @@ public class ModalImpl implements Modal {
 		int index = absoluteComponentPath.indexOf(JCR_CONTENT);
 		String relativeComponentPath = absoluteComponentPath.substring(index);
 		modalId = String.valueOf(Math.abs(relativeComponentPath.hashCode() - 1));
-		
-		if(pagePath.toString().startsWith(XF_PATH_CHECK) && !pagePath.toString().contains(HTML_EXT)) {
-			pagePath = pagePath.append(HTML_EXT);
+
+		if (pagePath != null && pagePath.startsWith(XF_PATH_CHECK) && !pagePath.contains(HTML_EXT)) {
+			pagePath = pagePath.concat(HTML_EXT);
 		}
 
 		ModifiableValueMap map = resource.adaptTo(ModifiableValueMap.class);
@@ -101,10 +101,10 @@ public class ModalImpl implements Modal {
 	}
 
 	@Override
-	public StringBuilder getPagePath() {
+	public String getPagePath() {
 		return pagePath;
 	}
-	
+
 	@Override
 	public boolean getShowModalByDefault() {
 		return showModalByDefault;

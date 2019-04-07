@@ -45,7 +45,7 @@ public interface Modal extends ComponentExporter {
 	 * @return pagePath
 	 *  @since com.adobe.cq.wcm.core.components.models 12.8.0
 	 */
-	default StringBuilder getPagePath() {
+	default String getPagePath() {
 		throw new UnsupportedOperationException();
 	}
 	

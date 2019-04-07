@@ -13,21 +13,10 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
-<div data-sly-use.modal="com.adobe.cq.wcm.core.components.models.Modal"
-     data-sly-use.template="core/wcm/components/commons/v1/templates.html">
+<div data-sly-use.modal="com.adobe.cq.wcm.core.components.models.Modal" data-sly-use.template="core/wcm/components/commons/v1/templates.html">
     <div data-sly-test="${wcmmode.edit}">
         <h4>Id: ${modal.modalId}</h4>
     </div>
-    <div class="cmp_modal" id="${modal.modalId}" data-default-show-modal="true" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-content-url="${modal.pagePath}">
-        <div class="cmp-modal-dialog">
-            <div class="cmp-modal-content">
-                <div class="cmp-modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="myModalClass">&times;</span></button>
-                </div>
-                <div class="cmp-modal-body">
-                </div>
-                
-            </div>
-        </div>
+    <div class="cmp_modal" id="${modal.modalId}" data-modal-show="${properties.showModalByDefault}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-content-url="${modal.pagePath}">
     </div>
 </div>

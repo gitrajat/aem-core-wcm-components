@@ -15,11 +15,28 @@
  ******************************************************************************/
 /* Getting Page URL  Modal ID */
 
-var getUrlModalID = window.location.hash.substr(1).split("?")[0];
-var getValOnPage = document.createElement("div");
-getValOnPage.setAttribute("id", "data-modal-content");
+var getValOnPage = document.createElement('div');
+getValOnPage.setAttribute('id', 'data-modal-content');
 document.body.appendChild(getValOnPage);
-var modalContentUrl = document.getElementById(getUrlModalID).getAttribute("data-content-url");
+
+function getModalOpenBehavior() {
+    var getUrlModal = window.location.hash.substr(1).split("?")[0];
+    var isModalOn = document.querySelectorAll("div[data-modal-show='true']");
+    if ((getUrlModal != '' && isModalOn.length == 0) || (getUrlModal != '' && isModalOn.length >= 0)) {
+        return (
+            getUrlModalID = getUrlModal
+        )
+    } else if ((getUrlModal == '' && isModalOn.length > 0)) {
+        var isModalOnVal = isModalOn[0].id;
+        return (
+            getUrlModalID = isModalOnVal
+        )
+    } else if ((getUrlModal != '' && isModalOn.length == 0)) {
+        return (
+            getUrlModalID = getUrlModal
+        )
+    }
+}
 
 function fetchData(url, insertModalContent) {
     var xhttp;
@@ -41,6 +58,10 @@ function initializeModal(xhttp) {
 }
 
 document.addEventListener('DOMContentLoaded', function (event) {
-    document.getElementById("data-modal-content").style.display = "none";
-    fetchData(modalContentUrl, initializeModal);
+    var getUrlModalID = getModalOpenBehavior();
+    if (getUrlModalID) {
+        var modalContentUrl = document.getElementById(getUrlModalID).getAttribute("data-content-url");
+        fetchData(modalContentUrl, initializeModal);
+        document.getElementById("data-modal-content").style.display = "none";
+    }
 })
