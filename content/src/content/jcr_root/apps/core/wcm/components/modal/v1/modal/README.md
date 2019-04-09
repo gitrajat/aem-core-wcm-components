@@ -18,8 +18,8 @@ Modal (v1)
 Modal component written in HTL that renders a configurable modal view for the content.
 
 ## Features
-*Content Fragment in Modal View
-*Experience Fragment in Modal View
+* Displays Content Fragment & Experience Fragment in Modal View.
+* Supports Modal View on page load & on click of any link.
 
 ### Use Object
 The Modal component uses the `com.adobe.cq.wcm.core.components.models.Modal` Sling model as its Use-object.
@@ -40,6 +40,6 @@ CSS styling. It should be added to a relevant site client library using the `emb
 ## Information
 * **Vendor**: Adobe
 * **Version**: v1
-* **Compatibility**: AEM 6.3
+* **Compatibility**: AEM 6.4
 * **Status**: production-ready
 

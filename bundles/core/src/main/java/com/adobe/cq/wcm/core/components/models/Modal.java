@@ -61,7 +61,7 @@ public interface Modal extends ComponentExporter {
 	
 	/**
      * @see ComponentExporter#getExportedType()
-     * @since com.adobe.cq.wcm.core.components.models 12.2.0
+     * @since com.adobe.cq.wcm.core.components.models 12.8.0
      */
     @NotNull
     @Override

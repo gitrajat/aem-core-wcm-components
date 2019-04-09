@@ -54,11 +54,11 @@ public class ModalImplTest {
 	@Test
     public void testModalProperties() {
 		Modal modal = getModalUnderTest(MODAL_1);
-		assertNotNull("The modal Id is null which is not expected", modal.getModalId());
-		assertNotNull("The modal page path is null which is not expected", modal.getPagePath());
-		assertNotNull("The modal show default value is null which is not expected", modal.getShowModalByDefault());
+		assertNotNull("The modalId is null which is not expected", modal.getModalId());
+		assertNotNull("The pagePath is null which is not expected", modal.getPagePath());
+		assertNotNull("The showModalByDefault is null which is not expected", modal.getShowModalByDefault());
 		assertEquals("The modal page path is not what was expected",new String("/content/experience-fragments/mid_markets/mmfxtest/master").concat(".html"),modal.getPagePath());
-		assertEquals("The modal's showModalByDefault value is not what was expected",new Boolean(false),modal.getShowModalByDefault());
+		assertEquals("The modal showModalByDefault is not what was expected",new Boolean(false),modal.getShowModalByDefault());
 		
 	}
 	

@@ -17,6 +17,7 @@ package com.adobe.cq.wcm.core.components.internal.models.v1;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.jackrabbit.vault.util.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.PersistenceException;
@@ -42,7 +43,6 @@ public class ModalImpl implements Modal {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ModalImpl.class);
 	protected static final String RESOURCE_TYPE = "core/wcm/components/modal/v1/modal";
 
-	private static final String JCR_CONTENT = "/jcr:content";
 	private static final String KEY_MODAL_ID = "modalId";
 	private static final String XF_PATH_CHECK = "/content/experience-fragments";
 	private static final String HTML_EXT = ".html";
@@ -70,7 +70,7 @@ public class ModalImpl implements Modal {
 
 	void populateModalProperties() {
 		String absoluteComponentPath = resource.getPath();
-		int index = absoluteComponentPath.indexOf(JCR_CONTENT);
+		int index = absoluteComponentPath.indexOf(JcrConstants.JCR_CONTENT);
 		String relativeComponentPath = absoluteComponentPath.substring(index);
 		modalId = String.valueOf(Math.abs(relativeComponentPath.hashCode() - 1));
 

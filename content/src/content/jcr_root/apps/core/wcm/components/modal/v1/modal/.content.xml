@@ -4,4 +4,4 @@
     jcr:description="Modal Component"
     jcr:primaryType="cq:Component"
     jcr:title="Modal (v1)"
-    componentGroup="We.Retail"/>
+    componentGroup=".core-wcm"/>
