@@ -17,6 +17,8 @@
     <div data-sly-test="${wcmmode.edit}">
         <h4>Id: ${modal.modalId}</h4>
     </div>
-    <div class="cmp_modal" id="${modal.modalId}" data-modal-show="${properties.showModalByDefault}" tabindex="-1" role="dialog" aria-hidden="true" data-content-url="${modal.pagePath}">
+    <div data-sly-test="${!wcmmode.edit}">
+        <div class="cmp_modal" id="${modal.modalId}" data-modal-show="${properties.showModalByDefault}" tabindex="-1" role="dialog" aria-hidden="true" data-content-url="${modal.pagePath}">
+        </div>
     </div>
 </div>
