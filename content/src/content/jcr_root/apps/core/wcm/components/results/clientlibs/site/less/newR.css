@@ -1,0 +1,297 @@
+/*
+ * Asset Share Commons
+ *
+ * Copyright [2017]  Adobe
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+* Awesome website
+* @author YOUR_NAME_HERE
+* @version 0.1
+*/
+
+/* ============================ RESET ============================ */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* ===== CUSTOM RESET ===== */
+
+object{outline:none; display:block; overflow:hidden} /* force redraw on IE8, fix outline/scroll bug on Firefox 3.6, remove unnecessary margin (copied from swffit)  */
+textarea{overflow:auto} /* fix IE */
+iframe{border:0}
+
+/* fix line-height [https://gist.github.com/413930] */
+sup, sub{line-height:0; font-size:.75em; position:relative; vertical-align:baseline}
+sup{top:-0.5em}
+sub{bottom:-0.25em}
+
+
+/* ========================= GENERAL TAGS ======================== */
+
+html{font-family:Verdana, Geneva, Tahoma, sans-serif; overflow-y:scroll; min-width:1000px}
+body{background-color:#fff; color:#444; font-size:12px; line-height:1.5em}
+
+h1, h2, h3, h4, h5, h6{margin:1.5em 0 .833em; font-weight:bold; line-height:1em}
+h1, .h1{font-size:2em}
+h2, .h2{font-size:1.6em}
+h3, .h3{font-size:1.4em}
+h4, .h4{font-size:1.2em}
+h5, .h5{font-size:1.1em}
+h6, .h6{font-size:1em}
+
+p{margin:1em 0}
+small{font-size:.833em}
+em, i{font-style:italic}
+strong, b{font-weight:bold}
+code, pre{font-family:monospace}
+
+a{text-decoration:none;}
+a:hover, a:focus{text-decoration:underline}
+a:hover, a:active{outline:none}
+
+hr{background-color:#fff; border:1px solid #fff; border-top:1px solid #aaa; clear:both; margin:2em 0}
+blockquote{padding:0.2em 1em 0.2em 2em; border-left:3px solid #eee}
+
+/* ======================= GENERIC CLASSES ======================= */
+.blue {
+    color: #0080FF;
+}
+
+button {
+    cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: none;
+    border: none;
+    vertical-align: baseline;
+    background: #e0e1e2 none;
+    color: rgba(0, 0, 0, 0.6);
+    font-family: 'LatoWeb', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    margin: 0em 0.25em 0em 0em;
+    padding: 0.833em 1.5em 0.833em;
+    text-transform: none;
+    text-shadow: none;
+    font-weight: bold;
+    line-height: 1em;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.28571429rem;
+    box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+    user-select: none;
+    transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+    will-change: '';
+    -webkit-tap-highlight-color: transparent;
+}
+
+button, html [type="button"], [type="reset"], [type="submit"] {
+    -webkit-appearance: button;
+}
+
+.push {
+    margin-left: auto;
+}
+
+/* ===== FRAMEWORK ===== */
+
+/* clearfix hack [http://j.mp/bestclearfix] */
+.clearfix:before, .clearfix:after, .clearfix > .lastcol:after, .ffluid:after, br.cb{display:block; height:0 !important; line-height:0; overflow:hidden; visibility:hidden}
+.clearfix:before, .clearfix:after{content:"."}
+.clearfix:after{clear:both}
+.clearfix, .ffluid{*zoom:1}
+
+/*======================== MAIN CSS ===============================*/
+
+.search {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.search__layout {
+    padding: 20px 0 10px 0;
+    margin-left: 145px; 
+    display: flex;
+}
+
+.search__sort--viewLink {
+    
+}
+
+.search__change--viewBtn {
+    
+}
+
+.list--view, .grid--view {
+    height: auto;
+    vertical-align: middle;
+    text-align: left;
+    background: none;
+    padding: 0 0.833em 0 0;
+    font-size: 1rem;
+}
+
+.list--view:hover, .grid--view:hover, .active {
+    color: #0080FF;
+}
+
+.list--view i, .grid--view i {
+    font-size: 1.55rem;
+}
+
+.search__field {
+    position: relative;
+    margin-left: 145px;
+}
+
+.search__field:before {
+    content: "\f002";
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #747474;
+}
+
+.search__field--text{
+    width: calc(100% - 66px);
+    height: 3rem;
+    border: 0.0625rem solid #d3d3d3;
+    border-radius: 0.25rem;
+    padding: 0 1rem 0 3rem;
+    font-size: 0.875rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.search__field--text:hover {
+    border-color: #0080FF;
+}
+
+.search__field--results {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search__field--view, .search__field--filters {
+    padding: 10px 20px
+}
+
+.search__field--view li {
+    margin-bottom: 40px;
+}
+
+.search__field--view p {
+    margin: 0.75em 0 0 0;
+}
+
+.search__img--card {
+    width: 10em;
+    max-height: 12rem;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0.28571429rem;
+    float: left;
+    margin: 0 20px 20px 0;
+}
+
+.search__results--footer button {
+    width: 100%;
+    display: block;
+}
+
+@media (max-width: 400px) {
+    .search__field--results {
+      display: block;
+    }
+}
+
+/*===============VIEW CHANGE CSS===========*/
+
+.search--viewchange img {
+    margin: 0 0 10px 0;
+    height: 11.25rem;
+    width: 100%;
+}
+
+.search--viewchange ul {
+    display: grid;
+    grid-gap: 50px;
+    grid-template-columns: auto auto auto;
+}
+
+.search--viewchange li {
+    position: relative;
+    margin-bottom: 2.5rem;
+    border-radius: 0.25rem;
+    background: #f9f9f9;
+    overflow: hidden;
+    border: 0.2em solid #f9f9f9;
+    border-radius: 0.28571429rem;
+    box-shadow: none, 0px 0px 0px 1px #d4d4d5;
+    transition: box-shadow 0.1s ease, transform 0.1s ease;
+}
+
+.search--viewchange h3 {
+    margin: 0 0 0 0;
+    padding: 0.75rem 1rem 1rem;
+}
+
+.search--viewchange span, 
+.search--viewchange p {
+    display: none;
+}

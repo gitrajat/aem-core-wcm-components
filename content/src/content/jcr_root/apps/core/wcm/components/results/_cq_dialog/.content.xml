@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Search Results"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="[assetshare.editor.components.search.results]">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maxmized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <tab-1
+                        granite:class="cmp-results__dialog--height-fix"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Search Parameters"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <field
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        name="./path"
+                                        rootPath="/content/dam"/>
+                                    <search-predicates
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        fieldDescription="Select pre-defined search restrictions that will be applied to the query server-side."
+                                        fieldLabel="Search Restrictions"
+                                        required="{Boolean}false">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                            emptyText="Choose a global search restriction"
+                                            name="./searchPredicates">
+                                            <datasource
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="asset-share-commons/data-sources/search-predicates"/>
+                                        </field>
+                                    </search-predicates>
+                                    <limit
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                        defaultValue="50"
+                                        fieldDescription="Describe the limit"
+                                        fieldLabel="Limit"
+                                        min="1"
+                                        name="./limit"
+                                        value="50"/>
+                                    <guess-total
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                        defaultValue="100"
+                                        fieldDescription="Describe Guess total; Set to 0 to set to true."
+                                        fieldLabel="Guess Total"
+                                        min="0"
+                                        name="./guessTotal"
+                                        text="Display help message as placeholder"
+                                        value="100"/>
+                                    <default-orderby
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldDescription="Sort property to use when no user selected order is provided"
+                                        fieldLabel="Default Sort Property"
+                                        name="./orderBy">
+                                        <datasource
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="asset-share-commons/data-sources/orderable-properties"/>
+                                    </default-orderby>
+                                    <default-orderby-sort
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldDescription="Sort direction to use when no user selected order is provided"
+                                        fieldLabel="Default Sort Direction"
+                                        name="./orderBySort">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <asc
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Ascending"
+                                                value="asc"/>
+                                            <desc
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Descending"
+                                                value="desc"/>
+                                        </items>
+                                    </default-orderby-sort>
+                                    <orderby-case
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:orderBefore="name"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        fieldDescription="Select for case-insensitive sorting of the default sort configuration. Only use this when 'Default Sort Property` is a text (String) property. This value should be kept in sync with the value for this property in the Sort component."
+                                        name="./orderByCase"
+                                        text="Case-Insensitive Sorting for Default Sort"
+                                        uncheckedValue="{Boolean}true"
+                                        value="{Boolean}false"/>
+                                </items>
+                            </column>
+                        </items>
+                    </tab-1>
+                    <tab-2
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Results"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <default
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldLabel="Default Layout"
+                                        name="./layout">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <card
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Card"
+                                                value="card"/>
+                                            <list
+                                                jcr:primaryType="nt:unstructured"
+                                                text="List"
+                                                value="list"/>
+                                        </items>
+                                    </default>
+                                    <card
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        emptyText="Choose an render for Card results"
+                                        extensionTypes="[asset-share-commons/search/results/result/card]"
+                                        fieldDescription="Resource type used to render card results"
+                                        fieldLabel="Card Result Renderer"
+                                        name="./cardResultResourceType">
+                                        <datasource
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="asset-share-commons/data-sources/result-resource-types"/>
+                                    </card>
+                                    <list
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        emptyText="Choose an render for List results"
+                                        extensionTypes="[asset-share-commons/search/results/result/list]"
+                                        fieldDescription="Resource type used to render list results"
+                                        fieldLabel="List Result Renderer"
+                                        name="./listResultResourceType">
+                                        <datasource
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="asset-share-commons/data-sources/result-resource-types"/>
+                                    </list>
+                                    <infinite-load
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        fieldDescription="Check to scroll to load more. Uncheck to click the load more button."
+                                        name="./infiniteLoadMore"
+                                        text="Infinite Load More"
+                                        value="true"/>
+                                    <load-more-label
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Text to display on the Load More control."
+                                        fieldLabel="Load More Label"
+                                        name="./loadMoreLabel"
+                                        required="{Boolean}true"/>
+                                    <missing-image
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldDescription="Image to use if no asset thumbnail can be found."
+                                        fieldLabel="Missing Image"
+                                        filter="hierarchy"
+                                        name="./missingImage"
+                                        rootPath="/"/>
+                                    <no-results
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Text to display when no search results are found."
+                                        fieldLabel="No Results Text"
+                                        name="./noResultsText"
+                                        required="{Boolean}true"/>
+                                </items>
+                            </column>
+                        </items>
+                    </tab-2>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>
